@@ -1,0 +1,21 @@
+version: 2.1
+orbs:
+  node: circleci/node@2.1.0
+  coveralls: coveralls/coveralls@1.0.6
+jobs:
+  test:
+    executor:
+      name: node/default
+      tag: '13.9.0'
+    steps:
+      - checkout
+      - node/install-packages
+      - run: 
+          command: npm run test:coverage
+      - store_artifacts:
+          path: coverage
+      - coveralls/upload
+workflows:
+    test:
+      jobs:
+        - test
