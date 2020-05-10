@@ -1,12 +1,12 @@
 version: 2.1
 orbs:
-  node: circleci/node@1.1.6
+  node: circleci/node@2.1.0
   coveralls: coveralls/coveralls@1.0.6
 jobs:
   build-and-test:
     executor:
       name: node/default
-      tag: 13.9.0
+      tag: '13.9.0'
     steps:
       - checkout
       - node/with-cache:
