@@ -1,0 +1,104 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NavToggle component - default (no children) renders correctly and updates aria-expanded when clicked on 1`] = `
+<DocumentFragment>
+  <button
+    aria-controls="navMenu"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+    class="nav__toggle"
+    data-testid="nav-toggle--default"
+    type="button"
+  >
+    <span
+      class="nav__toggle-icon nav__toggle-icon--top"
+    />
+    <span
+      class="nav__toggle-icon nav__toggle-icon--middle"
+    />
+    <span
+      class="nav__toggle-icon nav__toggle-icon--bottom"
+    />
+  </button>
+</DocumentFragment>
+`;
+
+exports[`NavToggle component - default (no children) with defaultStyling = true adds css module class names 1`] = `
+<DocumentFragment>
+  <button
+    aria-controls="navMenu"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+    class="nav__toggle toggle"
+    data-testid="nav-toggle--default"
+    type="button"
+  >
+    <span
+      class="nav__toggle-icon nav__toggle-icon--top toggleIcon toggleIconTop"
+    />
+    <span
+      class="nav__toggle-icon nav__toggle-icon--middle toggleIcon toggleIconMiddle"
+    />
+    <span
+      class="nav__toggle-icon nav__toggle-icon--bottom toggleIcon toggleIconBottom"
+    />
+  </button>
+</DocumentFragment>
+`;
+
+exports[`NavToggle component - with children renders correctly with multiple children elements 1`] = `
+<DocumentFragment>
+  <button
+    aria-controls="navMenu"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+    class="nav__toggle"
+    data-testid="nav-toggle"
+    type="button"
+  >
+    <span>
+      Icon
+    </span>
+    <span>
+      Icon
+    </span>
+    <span>
+      Icon
+    </span>
+  </button>
+</DocumentFragment>
+`;
+
+exports[`NavToggle component - with children renders correctly with one child component with isOpened props 1`] = `
+<DocumentFragment>
+  <button
+    aria-controls="navMenu"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+    class="nav__toggle"
+    data-testid="nav-toggle"
+    type="button"
+  >
+    <div>
+      false
+    </div>
+  </button>
+</DocumentFragment>
+`;
+
+exports[`NavToggle component - with children renders correctly with one child element 1`] = `
+<DocumentFragment>
+  <button
+    aria-controls="navMenu"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+    class="nav__toggle"
+    data-testid="nav-toggle"
+    type="button"
+  >
+    <span>
+      Icon
+    </span>
+  </button>
+</DocumentFragment>
+`;

@@ -1,0 +1,26 @@
+{
+	"extends": [
+		"stylelint-config-recommended",
+		"stylelint-config-sass-guidelines",
+		"stylelint-config-css-modules"
+  ],
+  "defaultSeverity": "warning",
+	"rules": {
+		"string-quotes": "double",
+		"indentation": "tab",
+		"max-nesting-depth": 4,
+		"selector-class-pattern": null,
+		"at-rule-no-unknown": [
+			true,
+			{
+				"ignoreAtRules": [
+					"function",
+					"if",
+					"each",
+					"include",
+					"mixin"
+				]
+			}
+		]
+	}
+}

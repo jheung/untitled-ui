@@ -1,0 +1,119 @@
+import { Meta, Story, Props, Preview } from "@storybook/addon-docs/blocks";
+import { Source } from '@storybook/components';
+import NavToggle from "./";
+import DefaultSCSS from '!!raw-loader!./NavToggle.scss'; 
+
+<Meta title="Components/Nav/Toggle" component={NavToggle} />
+
+# NavToggle
+
+1 / 2 of a basic navigation, this component can be used with your own menu. 
+NavToggle provides a `isOpened` prop, callbacks and aria attributes that you can use to manage the state of your menu.
+
+> The default props for the `aria` may require configuration. 
+>
+> If the connected menu's id is not `navMenu`, please set `aria.controls`. 
+>
+> If the locale is not `en-US`, please also update `aria.label`.
+
+---
+
+## Default styling [(Example SCSS used)](#base-scss-styling)
+
+<Preview>
+  <Story name="Default Styling">
+    <NavToggle defaultStyling={true}/>
+  </Story>
+</Preview>
+
+## Without Default styling
+
+*Not much to see here since there is no styling 😄 (inspect the element)*
+
+<Preview>
+  <NavToggle/>
+</Preview>
+
+## Using Callbacks
+
+OnToggleBefore / OnToggleAfter allows you to hook into the onClick event before and after the state is set.
+
+```jsx
+<NavToggle
+  onToggleBefore={newState => console.log(`Before: ${newState}`)}
+  onToggleAfter={newState=>console.log(`After: ${newState}`)}
+/>
+```
+
+<Preview>
+  <Story name="On Toggle - Before / After">
+    <NavToggle 
+      defaultStyling={true}
+      onToggleBefore={newState=>console.log(`Before: ${newState}`)} 
+      onToggleAfter={newState=>console.log(`After: ${newState}`)}>
+    </NavToggle>
+  </Story>
+</Preview>
+
+## Customization
+ 
+### Default styling with custom class names
+
+<Preview>
+  <Story name="Default Styling - custom class names">
+    <>
+      <style dangerouslySetInnerHTML={{__html: `
+        .custom-nav-toggle__icon {
+            background-color: red;
+        }
+      `}} />
+      <NavToggle 
+        defaultStyling={true} 
+        className={{
+          toggle: "custom-nav-toggle",
+          toggleIcon: "custom-nav-toggle__icon",
+          toggleIconTop: "custom-nav-toggle__icon--left",
+          toggleIconMiddle: "custom-nav-toggle__icon--middle",
+          toggleIconBottom: "custom-nav-toggle__icon--right"}}
+      />
+    </>
+  </Story>
+</Preview>
+
+### Custom "children"
+
+Use your own component/ DOM elements which will be wrapped in a button.
+
+Your component will be passed an `isOpened` prop or you can either use the callback hook to listen for state changes.
+For simplicity, you can also use the `aria-hidden` attribute on the toggle button to manipulate the css.
+
+> Keep in mind that if you pass HTML DOM elements as the children, you will not have access to the `isOpened` prop and will have to use the `aria-hidden` attribute to style the interaction
+
+<Preview>
+  <Story name="Custom toggle icon with DOM elements">
+    <>
+      <style dangerouslySetInnerHTML={{__html: `
+        .nav-toggle__icon--custom {
+          display: block;
+          font-size: 1.5rem;
+          line-height: 5px;
+        }
+        .nav__toggle[aria-expanded=true] .nav-toggle__icon--custom {
+          color: red;
+        }
+      `}} />
+      <NavToggle defaultStyling={true}>
+        <span className="nav-toggle__icon--custom">－</span>
+        <span className="nav-toggle__icon--custom">－</span>
+        <span className="nav-toggle__icon--custom">－</span>
+      </NavToggle>
+    </>
+  </Story>
+</Preview>
+
+## Props
+<Props of={NavToggle} />
+
+## Base SCSS Styling
+
+<Source language="css" code={DefaultSCSS} format={false} dark={true}/>

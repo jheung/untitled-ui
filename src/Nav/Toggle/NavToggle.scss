@@ -1,0 +1,47 @@
+.toggle {
+	background: 0;
+	border: 0;
+	cursor: pointer;
+	display: block;
+	font-size: 16px;
+	height: 2em;
+	padding: 0;
+	position: relative;
+	width: 2em;
+
+	&Icon {
+		background-color: #0074d9;
+		border-radius: 0.25em;
+		height: 0.25em;
+		left: 0;
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		transition: all 0.3s ease-in-out;
+		width: 2em;
+
+		&Top {
+			margin-top: -0.5em;
+		}
+
+		&Bottom {
+			margin-top: 0.5em;
+		}
+	}
+
+	&[aria-expanded="true"] {
+		.toggleIconTop {
+			margin-top: -0.125em;
+			transform: rotate(45deg);
+		}
+
+		.toggleIconMiddle {
+			opacity: 0;
+		}
+
+		.toggleIconBottom {
+			margin-top: -0.125em;
+			transform: rotate(-45deg);
+		}
+	}
+}
