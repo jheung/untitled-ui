@@ -6,32 +6,36 @@ jobs:
   test:
     executor:
       name: node/default
-      tag: '13.9.0'
+      tag: "13.9.0"
     steps:
       - checkout
       - node/install-packages
-      - run: 
-          command: npm run test:coverage
-      - store_artifacts:
-          path: coverage
+      - run:
+          name: Install JUnit coverage reporter
+          command: npm install -D jest-junit
+      - run:
+          name: Run tests with JUnit as reporter
+          command: npm run test:coverage -- --ci --runInBand --reporters=default --reporters=jest-junit
+          environment:
+            JEST_JUNIT_OUTPUT_DIR: ./reports/junit/
       - store_test_results:
-          path: coverage
+          path: ./reports/junit/
       - coveralls/upload
   build-publish-storybook:
     executor:
       name: node/default
-      tag: '13.9.0'
+      tag: "13.9.0"
     steps:
       - checkout
       - node/install-packages
-      - run: 
+      - run:
           command: npm run deploy-storybook -- --ci
 workflows:
-    test_and_storybook:
-      jobs:
-        - test
-        - build-publish-storybook:
+  test_and_storybook:
+    jobs:
+      - test
+      - build-publish-storybook:
           filters:
             branches:
-              only: 
+              only:
                 - master
