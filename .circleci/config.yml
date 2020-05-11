@@ -2,20 +2,75 @@ version: 2.1
 orbs:
   node: circleci/node@2.1.0
   coveralls: coveralls/coveralls@1.0.6
+requires-node: &requires-node-13
+  executor:
+    name: node/default
+    tag: "13.9.0"
 jobs:
-  test:
-    executor:
-      name: node/default
-      tag: '13.9.0'
+  install:
+    <<: *requires-node-13
     steps:
       - checkout
       - node/install-packages
-      - run: 
-          command: npm run test:coverage
-      - store_artifacts:
-          path: coverage
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - project
+  lint:
+    <<: *requires-node-13
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run:
+          name: Install Stylelint JUnit formatter
+          command: npm install -D stylelint-junit-formatter
+      - run:
+          name: "JS Linter"
+          command: npm run lint:js -- --format junit -o ./reports/junit/js-lint-results.xml
+      - run:
+          name: "CSS Linter"
+          command: |
+            mkdir -p reports/stylelint
+            npm run lint:css -- --custom-formatter 'node_modules/stylelint-junit-formatter' > ./reports/stylelint/test-results.xml
+      - store_test_results:
+          path: ./reports
+  test:
+    <<: *requires-node-13
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run:
+          name: Install JUnit coverage reporter
+          command: npm install -D jest-junit
+      - run:
+          name: Run tests with JUnit as reporter
+          command: npm run test:coverage -- --ci --runInBand --reporters=default --reporters=jest-junit
+          environment:
+            JEST_JUNIT_OUTPUT_DIR: ./reports/junit/
+      - store_test_results:
+          path: ./reports/junit/
       - coveralls/upload
+  build_and_deploy_storybook:
+    <<: *requires-node-13
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run:
+          command: npm run deploy-storybook -- --ci
 workflows:
-    test:
-      jobs:
-        - test
+  test_and_deploy_storybook:
+    jobs:
+      - install
+      - lint:
+          requires:
+            - install
+      - test:
+          requires:
+            - install
+      - build_and_deploy_storybook:
+          requires:
+            - install
+          filters:
+            branches:
+              only:
+                - master
