@@ -4,7 +4,7 @@
 
 ## An unstyled UI component library to enable a design-first approach in a world of cookie-cutter frameworks. This library focuses on functionality with accessibility baked in so that you can focus on making it pretty.
 
-![PRs Welcome](https://img.shields.io/badge/PRs-welcome-green.svg) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/untitled-ui) ![Coveralls github branch](https://img.shields.io/coveralls/github/jheung/untitled-ui/master)
+![PRs Welcome](https://img.shields.io/badge/PRs-welcome-green.svg) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/untitled-ui) [![Coverage Status](https://coveralls.io/repos/github/jheung/untitled-ui/badge.svg)](https://coveralls.io/github/jheung/untitled-ui)
 
 </center>
 
