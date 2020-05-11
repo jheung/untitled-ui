@@ -28,4 +28,7 @@ workflows:
     test_and_storybook:
       jobs:
         - test
-        - build-publish-storybook
+        - build-publish-storybook:
+          filters:
+            branches:
+              only: master
