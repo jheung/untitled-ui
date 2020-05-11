@@ -27,8 +27,13 @@ jobs:
 workflows:
     test_and_storybook:
       jobs:
-        - test
+        - test:
+          filters:
+            branches:
+              ignore:
+                - gh-pages
         - build-publish-storybook:
           filters:
             branches:
-              only: master
+              only: 
+                - master
