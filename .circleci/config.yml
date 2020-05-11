@@ -14,6 +14,8 @@ jobs:
           command: npm run test:coverage
       - store_artifacts:
           path: coverage
+      - store_test_results:
+          path: coverage
       - coveralls/upload
   build-publish-storybook:
     executor:
