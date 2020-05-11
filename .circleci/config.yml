@@ -15,7 +15,17 @@ jobs:
       - store_artifacts:
           path: coverage
       - coveralls/upload
+  build-publish-storybook:
+    executor:
+      name: node/default
+      tag: '13.9.0'
+    steps:
+      - checkout
+      - node/install-packages
+      - run: 
+          command: npm run deploy-storybook -- --ci
 workflows:
-    test:
+    test_and_storybook:
       jobs:
         - test
+        - build-publish-storybook
