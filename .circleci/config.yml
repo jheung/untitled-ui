@@ -16,6 +16,24 @@ jobs:
           root: ~/
           paths:
             - project
+  lint:
+    <<: *requires-node-13
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run:
+          name: Install Stylelint JUnit formatter
+          command: npm install -D stylelint-junit-formatter
+      - run:
+          name: "JS Linter"
+          command: npm run lint:js -- --format junit -o ./reports/junit/js-lint-results.xml
+      - run:
+          name: "CSS Linter"
+          command: |
+            mkdir -p reports/stylelint
+            npm run lint:css -- --custom-formatter 'node_modules/stylelint-junit-formatter' > ./reports/stylelint/test-results.xml
+      - store_test_results:
+          path: ./reports
   test:
     <<: *requires-node-13
     steps:
@@ -43,6 +61,9 @@ workflows:
   test_and_deploy_storybook:
     jobs:
       - install
+      - lint:
+          requires:
+            - install
       - test:
           requires:
             - install
