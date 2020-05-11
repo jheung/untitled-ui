@@ -12,7 +12,7 @@
 
 ## 🤔 Philosophy
 
-After working with so many different design frameworks, the same problem always arose time after time. We spend too much time overwriting and fighting against the design framework in order to get it looking just the way we want. _We just want to make the web pretty and not worry about all the small details to get a component working._
+After working with so many different design frameworks, the same problem arose time after time. We spend too much time overwriting and fighting against the design framework in order to get it looking just the way we want. _We just want to make the web pretty and not worry about all the small details to get a component working._
 
 This library:
 
@@ -21,7 +21,7 @@ This library:
 - functions with minimal setup
 - has accessibility built-in (structure / functionality)
   - styling related accessibility is up to you
-- is composable to the allow flexibility
+- is composable to allow flexibility
 - **for the front-end developers that want to focus on that pixel-perfect design**
 
 ---
@@ -32,7 +32,7 @@ To begin using Untitled UI, install the package in your project directory via np
 
 #### `npm install untitled-ui`
 
-Visit the documentation to see how you can start implementing these components!
+Visit the [documentation](https://jheung.github.io/untitled-ui) to see how you can start implementing these components!
 
 ---
 
@@ -45,5 +45,4 @@ Visit the documentation to see how you can start implementing these components!
 
 ## 📝 Pre-release Checklist
 
-- [ ] Add link to Storybook Docs
 - [ ] Add CodeSandbox template
