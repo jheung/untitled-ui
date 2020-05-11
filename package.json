@@ -51,6 +51,9 @@
 			"git add"
 		]
 	},
+	"storybook-deployer": {
+		"commitMessage": "Deploy Storybook to GitHub Pages [skip ci]"
+	},
 	"keywords": [
 		"react",
 		"react-component",
